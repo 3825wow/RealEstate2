@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Mihaylov | Real Estate Agent</title>
+  <meta name="description" content="Michael Mihaylov is a modern real estate agent helping buyers, sellers, and investors make confident property decisions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e7dac9;
+      --taupe: #bba88f;
+      --charcoal: #1f2526;
+      --muted: #65706f;
+      --white: #fffaf4;
+      --line: rgba(31, 37, 38, 0.16);
+      --shadow: 0 24px 70px rgba(31, 37, 38, 0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.25rem, 2vw, 1.8rem);
+      letter-spacing: -0.03em; font-weight: 700;
+    }
+    .brand span { color: var(--taupe); }
+    .nav-links { display: flex; gap: 28px; align-items: center; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+    .nav-links a { opacity: 0.8; transition: opacity .2s ease; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta, .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 46px; padding: 0 22px;
+      border: 1px solid var(--charcoal);
+      background: var(--charcoal); color: var(--white);
+      font-weight: 700; font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .nav-cta:hover, .btn:hover { transform: translateY(-2px); }
+    .btn.secondary { background: transparent; color: var(--charcoal); }
+    .btn.secondary:hover { background: var(--charcoal); color: var(--white); }
+
+    .hero {
+      min-height: 100vh; padding-top: 78px; display: grid; align-items: stretch;
+      background:
+        linear-gradient(90deg, rgba(245,240,232,0.98) 0%, rgba(245,240,232,0.86) 42%, rgba(31,37,38,0.12) 100%),
+        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=85') center/cover;
+    }
+    .hero-inner { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 60px; padding: 80px 0 54px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 700; color: var(--muted); margin-bottom: 18px; }
+    h1, h2, h3 { font-family: "Playfair Display", serif; line-height: 1.02; letter-spacing: -0.045em; }
+    h1 { font-size: clamp(3.4rem, 8vw, 8rem); max-width: 760px; }
+    .hero p { max-width: 570px; margin: 28px 0 34px; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.2rem); }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-card {
+      align-self: end; justify-self: end; width: min(420px, 100%);
+      background: rgba(255, 250, 244, .86);
+      border: 1px solid var(--line); box-shadow: var(--shadow);
+      padding: 28px; backdrop-filter: blur(14px);
+    }
+    .hero-card strong { display: block; font-family: "Playfair Display", serif; font-size: 2rem; line-height: 1.1; margin-bottom: 10px; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--white); }
+    .stat { padding: 34px 24px; text-align: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat b { font-family: "Playfair Display", serif; font-size: clamp(2.2rem, 4vw, 4rem); line-height: 1; }
+    .stat span { display: block; margin-top: 8px; color: var(--muted); font-weight: 600; }
+
+    section { padding: 105px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 44px; }
+    h2 { font-size: clamp(2.5rem, 5vw, 5.1rem); max-width: 740px; }
+    .section-head p { max-width: 420px; color: var(--muted); }
+
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 62px; align-items: center; }
+    .portrait {
+      min-height: 610px;
+      background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85') center/cover;
+      box-shadow: var(--shadow); position: relative;
+    }
+    .portrait::after {
+      content: "Real estate guidance with clarity, strategy, and calm confidence.";
+      position: absolute; left: 28px; right: 28px; bottom: 28px;
+      background: rgba(255,250,244,.9); padding: 22px;
+      font-family: "Playfair Display", serif; font-size: 1.55rem; line-height: 1.16;
+    }
+    .about-copy p { color: var(--muted); margin: 24px 0; font-size: 1.06rem; }
+    .signature { font-family: "Playfair Display", serif; font-size: 2.4rem; margin-top: 24px; }
+
+    .services { background: var(--charcoal); color: var(--white); }
+    .services .eyebrow, .services p { color: rgba(255,250,244,.72); }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card {
+      border: 1px solid rgba(255,250,244,.18); padding: 34px; min-height: 310px;
+      display: flex; flex-direction: column; justify-content: space-between; background: rgba(255,255,255,.035);
+    }
+    .service-card h3 { font-size: 2rem; margin-bottom: 18px; }
+    .service-card p { color: rgba(255,250,244,.68); }
+    .service-card span { font-weight: 700; letter-spacing: .12em; font-size: .78rem; color: var(--taupe); }
+
+    .listing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .listing { background: var(--white); border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(31,37,38,.08); }
+    .listing-img { aspect-ratio: 4/3; object-fit: cover; width: 100%; }
+    .listing-body { padding: 24px; }
+    .listing h3 { font-size: 1.7rem; margin-bottom: 8px; }
+    .price { font-weight: 800; margin-bottom: 14px; }
+    .details { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: .92rem; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 18px; }
+
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); background: var(--white); }
+    .step { padding: 32px; border-right: 1px solid var(--line); }
+    .step:last-child { border-right: 0; }
+    .step b { color: var(--taupe); letter-spacing: .14em; font-size: .8rem; }
+    .step h3 { font-size: 1.6rem; margin: 18px 0 12px; }
+    .step p { color: var(--muted); font-size: .96rem; }
+
+    .quote { background: linear-gradient(rgba(31,37,38,.68), rgba(31,37,38,.68)), url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=85') center/cover; color: var(--white); text-align: center; padding: 132px 0; }
+    .quote blockquote { font-family: "Playfair Display", serif; font-size: clamp(2.25rem, 5vw, 5rem); line-height: 1.08; max-width: 980px; margin: 0 auto 28px; letter-spacing: -0.04em; }
+    .quote p { color: rgba(255,250,244,.74); }
+
+    .contact { padding-bottom: 0; }
+    .contact-panel { display: grid; grid-template-columns: .95fr 1.05fr; background: var(--white); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .contact-info { padding: 48px; background: var(--sand); }
+    .contact-info h2 { font-size: clamp(2.4rem, 4vw, 4.6rem); }
+    .contact-info p { color: var(--muted); margin: 22px 0 34px; }
+    .contact-lines { display: grid; gap: 18px; font-weight: 700; }
+    form { padding: 48px; display: grid; gap: 16px; }
+    input, textarea, select { width: 100%; padding: 16px 18px; border: 1px solid var(--line); background: #fff; font: inherit; color: var(--charcoal); outline: none; }
+    textarea { min-height: 135px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { border-color: var(--charcoal); }
+
+    footer { padding: 42px 0; color: var(--muted); font-size: .9rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 28px; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-inner, .about-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero-card { justify-self: start; }
+      .service-grid, .listing-grid, .process-grid { grid-template-columns: 1fr; }
+      .step, .service-card { border-right: 0; border-bottom: 1px solid var(--line); }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--line); }
+      .section-head { display: block; }
+      .section-head p { margin-top: 20px; }
+      .portrait { min-height: 470px; }
+      h1 { font-size: clamp(3.2rem, 15vw, 5.5rem); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">Michael <span>Mihaylov</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#properties">Properties</a>
+        <a href="#process">Process</a>
+      </nav>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="eyebrow">Residential Real Estate Advisor</div>
+          <h1>Modern guidance for your next move.</h1>
+          <p>Michael Mihaylov helps clients buy, sell, and invest with a refined strategy, clear communication, and a polished marketing approach built for today’s market.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#contact">Schedule a Consultation</a>
+            <a class="btn secondary" href="#properties">View Featured Homes</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Agent highlight">
+          <strong>Local insight. Elevated presentation. Better decisions.</strong>
+          <p>From valuation to negotiation, every detail is handled with focus and intention.</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="stats" aria-label="Performance highlights">
+      <div class="stat"><b>01</b><span>Personalized selling strategy</span></div>
+      <div class="stat"><b>02</b><span>Buyer guidance from search to close</span></div>
+      <div class="stat"><b>03</b><span>Premium digital property marketing</span></div>
+    </div>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="portrait" role="img" aria-label="Professional real estate advisor portrait placeholder"></div>
+        <div class="about-copy">
+          <div class="eyebrow">Meet Michael</div>
+          <h2>A calm, strategic approach to real estate.</h2>
+          <p>Real estate is personal, financial, and often fast-moving. Michael brings structure to the process, giving clients clear direction, thoughtful market context, and steady representation from the first conversation to the final signature.</p>
+          <p>Whether preparing a home for sale, identifying the right property, or weighing an investment opportunity, Michael focuses on the details that shape value: presentation, pricing, timing, negotiation, and fit.</p>
+          <a class="btn secondary" href="#contact">Work With Michael</a>
+          <div class="signature">Michael Mihaylov</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Services</div>
+            <h2>Designed for buyers, sellers, and investors.</h2>
+          </div>
+          <p>Every client receives a focused plan tailored to their goals, timeline, and market position.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card"><div><span>SELL</span><h3>Listing Strategy</h3><p>Pricing guidance, preparation recommendations, refined photography direction, launch planning, and offer review.</p></div></article>
+          <article class="service-card"><div><span>BUY</span><h3>Home Search</h3><p>Neighborhood guidance, property evaluation, competitive offer strategy, and support through closing.</p></div></article>
+          <article class="service-card"><div><span>INVEST</span><h3>Market Advisory</h3><p>Data-informed analysis for clients comparing opportunities, repositioning assets, or planning their next move.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="properties">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Featured Properties</div>
+            <h2>Homes presented with editorial polish.</h2>
+          </div>
+          <p>Replace these sample properties with live listings, recent sales, or curated neighborhood highlights.</p>
+        </div>
+        <div class="listing-grid">
+          <article class="listing">
+            <img class="listing-img" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85" alt="Modern luxury home exterior" />
+            <div class="listing-body"><h3>Contemporary Residence</h3><div class="price">$1,245,000</div><p>Clean architecture, open interiors, and refined outdoor living.</p><div class="details"><span>4 Beds</span><span>3 Baths</span><span>3,180 Sq Ft</span></div></div>
+          </article>
+          <article class="listing">
+            <img class="listing-img" src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=85" alt="Bright modern kitchen and living area" />
+            <div class="listing-body"><h3>Elegant Family Home</h3><div class="price">$985,000</div><p>Warm finishes, functional flow, and inviting entertaining spaces.</p><div class="details"><span>3 Beds</span><span>2.5 Baths</span><span>2,420 Sq Ft</span></div></div>
+          </article>
+          <article class="listing">
+            <img class="listing-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85" alt="Luxury home with landscaped exterior" />
+            <div class="listing-body"><h3>Private Estate</h3><div class="price">$1,875,000</div><p>Privacy, scale, and timeless curb appeal in a premium setting.</p><div class="details"><span>5 Beds</span><span>4 Baths</span><span>4,650 Sq Ft</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">Process</div><h2>Clear steps from first call to closing day.</h2></div></div>
+        <div class="process-grid">
+          <div class="step"><b>01</b><h3>Consult</h3><p>Define goals, timing, budget, and the path forward.</p></div>
+          <div class="step"><b>02</b><h3>Prepare</h3><p>Build the right plan for pricing, search, presentation, or analysis.</p></div>
+          <div class="step"><b>03</b><h3>Negotiate</h3><p>Move decisively with strategy, context, and confidence.</p></div>
+          <div class="step"><b>04</b><h3>Close</h3><p>Coordinate the final details and support a smooth transition.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="container">
+        <blockquote>“The best real estate decisions are made with clarity, timing, and trusted guidance.”</blockquote>
+        <p>Michael Mihaylov</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-panel">
+        <div class="contact-info">
+          <div class="eyebrow">Contact</div>
+          <h2>Let’s plan your next move.</h2>
+          <p>Share a few details and Michael will follow up to discuss your goals, timeline, and best next steps.</p>
+          <div class="contact-lines">
+            <a href="tel:+10000000000">+1 (000) 000-0000</a>
+            <a href="mailto:michael@example.com">michael@example.com</a>
+            <span>Serving buyers, sellers, and investors</span>
+          </div>
+        </div>
+        <form action="mailto:michael@example.com" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <input type="tel" name="phone" placeholder="Phone number" />
+          <select name="interest" aria-label="Real estate goal">
+            <option value="">I am interested in...</option>
+            <option>Buying</option>
+            <option>Selling</option>
+            <option>Investing</option>
+            <option>Market valuation</option>
+          </select>
+          <textarea name="message" placeholder="Tell Michael about your goals"></textarea>
+          <button class="btn" type="submit">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 Michael Mihaylov. All rights reserved.</p>
+      <p>Real Estate Agent Website</p>
+    </div>
+  </footer>
+</body>
+</html>
